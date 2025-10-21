@@ -1,0 +1,21 @@
+id,nome,descricao,nm_responsavel,contato_responsavel,nr_patrimonio,categoria,imagem_url,espaco_id
+1,Centrífuga Digital,Para separação celular,Dr. Silva,(11) 98888-1001,PAT1001,Biologia Molecular,https://example.com/centrifuga.jpg,1
+2,Microscópio Óptico,Ampliação de estruturas celulares,Prof. Lima,(11) 98888-1002,PAT1002,Biologia Molecular,https://example.com/microscopio.jpg,1
+3,Capela de Fluxo Laminar,Ambiente estéreo para manipulação,Drª Mendes,(11) 98888-1003,PAT1003,Biologia Molecular,https://example.com/capela.jpg,1
+4,Agitador Magnético,Mistura de soluções químicas,Prof. Torres,(11) 98888-2001,PAT2001,Química Orgânica,https://example.com/agitador.jpg,2
+5,Reator de Síntese,Síntese de compostos orgânicos,Dr. Andrade,(11) 98888-2002,PAT2002,Química Orgânica,https://example.com/reator.jpg,2
+6,Cromatógrafo Gasoso,Separação e análise de componentes,Drª Freitas,(11) 98888-2003,PAT2003,Química Orgânica,https://example.com/cromatografo.jpg,2
+7,Gerador de Funções,Simulação de sinais elétricos,Eng. Costa,(11) 98888-3001,PAT3001,Física Experimental,https://example.com/gerador.jpg,3
+8,Osciloscópio Digital,Visualização de formas de onda,Prof. Ramos,(11) 98888-3002,PAT3002,Física Experimental,https://example.com/osciloscopio.jpg,3
+9,Laser de He-Ne,Estudos ópticos e interferência,Drª Barbosa,(11) 98888-3003,PAT3003,Física Experimental,https://example.com/laser.jpg,3
+10,Máquina de Ensaios,Tensões e compressão de materiais,Eng. Lopes,(11) 98888-4001,PAT4001,Engenharia Civil,https://example.com/ensaio.jpg,4
+11,Betoneira Laboratorial,Mistura de argamassas,Prof. Nunes,(11) 98888-4002,PAT4002,Engenharia Civil,https://example.com/betoneira.jpg,4
+12,Câmera Térmica,Monitoramento de estruturas,Drª Moura,(11) 98888-4003,PAT4003,Engenharia Civil,https://example.com/camera.jpg,4
+13,Cluster de Computação,Simulações computacionais avançadas,Prof. Tavares,(11) 98888-5001,PAT5001,Computação Científica,https://example.com/cluster.jpg,5
+14,Servidor GPU,NVIDIA para AI e deep learning,Drª Figueiredo,(11) 98888-5002,PAT5002,Computação Científica,https://example.com/gpu.jpg,5
+15,Estação de Trabalho,HPC otimizada para simulações,Eng. Rocha,(11) 98888-5003,PAT5003,Computação Científica,https://example.com/workstation.jpg,5
+16,Balança Analítica,Pesagem precisa de substâncias,Drª Garcia,(11) 98888-6001,PAT6001,Farmacologia,https://example.com/balanca.jpg,6
+17,Câmara Climatizada,Simulação de ambiente para testes,Prof. Oliveira,(11) 98888-6002,PAT6002,Farmacologia,https://example.com/camara.jpg,6
+18,Microsseringa,Aplicação em análises clínicas,Dr. Teixeira,(11) 98888-6003,PAT6003,Farmacologia,https://example.com/microsseringa.jpg,6
+19,Microscópio Veterinário,Análise de tecidos animais,Drª Nogueira,(11) 98888-7001,PAT7001,Medicina Veterinária,https://example.com/vetmicroscopio.jpg,7
+20,Centrífuga de Sangue,Separação de plasma,Prof. Ferreira,(11) 98888-7002,PAT7002,Medicina Veterinária,https://example.com/vetcentrifuga.jpg,7

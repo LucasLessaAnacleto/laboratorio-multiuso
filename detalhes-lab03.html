@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detalhes do Laboratório</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html">
+      <div class="logo">LabReserve</div>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="#espacos">Espaços</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="lab-detalhes">
+    <h1 class="lab-nome" id="lab-nome">Carregando...</h1>
+
+    <div class="lab-container">
+      <div class="lab-img-box">
+        <img id="lab-img" src="" alt="Imagem do laboratório" />
+      </div>
+
+      <div class="lab-info-box">
+        <p id="lab-descricao"></p>
+        <p><strong>Endereço:</strong> <span id="lab-endereco"></span></p>
+        <p><strong>Contato:</strong> <span id="lab-contato"></span></p>
+        <p><strong>Disponibilidade/Horários:</strong> <span id="lab-horario"></span></p>
+        <p><strong>Departamento:</strong> <span id="lab-departamento"></span></p>
+
+        <div class="lab-equipamentos">
+          <h3>Equipamentos disponíveis:</h3>
+          <ul id="lab-equipamentos">
+          </ul>
+        </div>
+
+        <a id="agendar-link" href="#"><button class="btn-agendar">Agendar</button></a>
+      </div>
+    </div>
+  </section>
+
+  <script type="module">
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm';
+
+    const supabaseUrl = 'https://xvlggnqoaptrzaaaeiem.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTQzMTEsImV4cCI6MjA2NzA3MDMxMX0.G6KmXZ07TwWIn_02-CVIuq4y3Fo65A_mRCKAEI5PMqA'; // Substitua aqui
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    const params = new URLSearchParams(window.location.search);
+    const labId = params.get('lab');
+
+    async function carregarDetalhes() {
+      if (!labId) return;
+
+      const { data, error } = await supabase
+        .from('espaco')
+        .select('*')
+        .eq('id', labId)
+        .single();
+
+      if (error) {
+        console.error('Erro ao buscar dados:', error);
+        return;
+      }
+
+      // Preencher os campos
+      document.getElementById('lab-nome').textContent = data.nome;
+      document.getElementById('lab-img').src = data.imagem_url;
+      document.getElementById('lab-descricao').textContent = data.descricao;
+      document.getElementById('lab-endereco').textContent = data.endereco;
+      document.getElementById('lab-contato').textContent = data.contato;
+      document.getElementById('lab-horario').textContent = data.horario_funcionamento;
+      document.getElementById('lab-departamento').textContent = data.departamento;
+
+      document.getElementById('agendar-link').href = `agendar.html?espaco_id=${data.id}`;
+
+      const { data: equipamentos, error: eqError } = await supabase
+      .from('equipamentos')
+      .select('nome')
+      .eq('espaco_id', labId);
+
+      if (eqError) {
+        console.error('Erro ao buscar equipamentos:', eqError);
+        return;
+      }
+
+      const lista = document.getElementById('lab-equipamentos');
+      lista.innerHTML = ''; 
+
+      if (equipamentos && equipamentos.length > 0) {
+        equipamentos.forEach(eq => {
+          const li = document.createElement('li');
+          li.textContent = eq.nome;  
+          lista.appendChild(li);
+        });
+      } else {
+        const li = document.createElement('li');
+        li.textContent = 'Nenhum equipamento cadastrado.';
+        lista.appendChild(li);
+      }
+    }
+
+
+    carregarDetalhes();
+  </script>
+</body>
+</html>

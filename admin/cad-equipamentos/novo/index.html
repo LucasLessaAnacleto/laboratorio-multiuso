@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Espaços</title>
+    <link rel="stylesheet" href="../../../src/css/global.css">
+    <link rel="stylesheet" href="../../index.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                    <a href="/admin/dashboard.html" class="sidebar-nav-item">
+                        <i class="nav-icon icon-home"></i>
+                        Dashboard
+                    </a>
+                    </li>
+                    <li>
+                    <a href="/" class="sidebar-nav-item">
+                        <i class="nav-icon icon-calendar"></i>
+                        Calendário
+                    </a>
+                    </li>
+                    <li>
+                    <a href="/admin/cad-equipamentos/" class="sidebar-nav-item">
+                        <i class="nav-icon icon-equipamento"></i>
+                        Equipamentos
+                    </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-espacos/index.html" class="sidebar-nav-item active">
+                            <i class="nav-icon icon-espaco"></i>
+                            Espaços
+                        </a>
+                    </li>
+                    <li>
+                    <a href="#" class="sidebar-nav-item">
+                        <i class="nav-icon icon-config"></i>
+                        Configurações
+                    </a>
+                    </li>
+                </ul>
+            </nav> 
+        </aside>
+        <div class="app-content">
+            <header class="app-header">
+                <div></div>
+                <div class="app-header-title">
+                    <h2>Gerenciamento de Laboratórios Multiusos</h2>
+                </div>
+                <div class="user-profile">
+                    <i class="nav-icon icon-user"></i>
+                </div>
+            </header>
+            <main class="app-main">
+                <div class="page-title-actions">
+                    <h1>Novo equipamento</h1>
+                    <!-- <div></div> -->
+                </div>
+                <div class="container-info-data">
+                    <div class="form-container">
+                        <form class="data-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nome">Nome</label>
+                                    <input type="text" id="nome" name="nome" placeholder="Ex: Microscópio" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="nr_patrimonio">Nº Patrimônio</label>
+                                    <input type="text" id="nr_patrimonio" name="nr_patrimonio" placeholder="Ex: 123456">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nm_responsavel">Responsável</label>
+                                    <input type="text" id="nm_responsavel" name="nm_responsavel" placeholder="Ex: João Silva">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contato_responsavel">Contato</label>
+                                    <input type="text" id="contato_responsavel" name="contato_responsavel" placeholder="Ex: (48) 99999-9999">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="categoria">Categoria</label>
+                                    <input type="text" id="categoria" name="categoria" placeholder="Ex: Equipamento Óptico">
+                                </div>
+                                <div class="form-group">
+                                    <label for="descricao">Descrição</label>
+                                    <input type="text" id="descricao" name="descricao" placeholder="Breve descrição do equipamento">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="espaco_id">Laboratório</label>
+                                    <select id="espaco_id" name="espaco_id" required>
+                                        <option value="">Selecione um espaço</option>
+                                        <!-- Espaços devem ser adicionados dinamicamente aqui -->
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="imagem_url">URL da Imagem</label>
+                                    <input type="url" id="imagem_url" name="imagem_url" placeholder="Ex: /assets/imagens/equipamento.jpg">
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button id="cancel-btn" type="button" class="button cancel-button">Cancelar</button>
+                                <button id="save-btn" type="submit" class="button register-button">Cadastrar</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Equipment } from "../../../src/js/schemas/equipment.js";
+        import { db } from "../../../src/js/lib/db/index.js";
+
+        async function carregarEspacos() {
+            try {
+                const espacos = await db.space.select();
+
+                const select = document.getElementById("espaco_id");
+                espacos.forEach(espaco => {
+                    const option = document.createElement("option");
+                    option.value = `${espaco.id} - ${espaco.nome}`;
+                    option.setAttribute("data-id", espaco.id);
+                    option.textContent = `${espaco.id} - ${espaco.nome}`;
+                    select.appendChild(option);
+                });
+            } catch (err) {
+                alert("Erro ao carregar espaços: " + err.message);
+            }
+        }
+
+        carregarEspacos();
+
+        $(".data-form").on("submit", async function (e) {
+            e.preventDefault();
+
+            const selectedOption = $("#espaco_id option:selected");
+            const espacoId = selectedOption.data("id");
+
+            const formData = {
+                nome: $("#nome").val().trim(),
+                nr_patrimonio: $("#nr_patrimonio").val().trim(),
+                nm_responsavel: $("#nm_responsavel").val().trim(),
+                contato_responsavel: $("#contato_responsavel").val().trim(),
+                categoria: $("#categoria").val().trim(),
+                descricao: $("#descricao").val().trim(),
+                imagem_url: $("#imagem_url").val().trim() || undefined,
+                espaco_id: espacoId
+            };
+
+            try {
+                await db.equipment.insert(formData);
+                alert("Equipamento cadastrado com sucesso!");
+
+                this.reset();
+            } catch (err) {
+                alert("Erro ao cadastrar equipamento: " + err.message);
+            }
+        });
+
+        $("#cancel-btn").on("click", function () {
+            window.location.href = '/admin/cad-equipamentos/';
+        });
+    </script>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teste Supabase API</title>
+</head>
+<body>
+  <h1>Teste: Supabase API (src/js/lib/api/index.js)</h1>
+
+  <script type="module">
+    import { backend } from "../js/lib/api/index.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      console.log("🚀 Iniciando testes com Supabase...");
+
+      try {
+        // 🔍 1. Buscar todos os espaços
+        console.log("🔍 GET TODOS os espaços");
+        const espacos = await backend.getAll("espaco", {
+          select: "id,nome,endereco"
+        });
+        console.log("✅ ESPAÇOS:", espacos);
+
+        // 📨 2. Inserir um novo espaço
+        console.log("\n📨 POST novo espaço");
+        const novoEspaco = await backend.insert("espaco", {
+          nome: "Sala de Teste",
+          endereco: "Bloco C",
+          contato: "48999999999",
+          disponibilidade: "Seg a Sex, 08h às 17h",
+          departamento: "Tecnologia",
+          politica_uso: "Reservar com 24h de antecedência",
+          nr_sala: "301",
+          nr_andar: "3",
+          imagem_url: "https://via.placeholder.com/150"
+        });
+        console.log("✅ INSERIDO:", novoEspaco);
+
+        const id = novoEspaco[0]?.id;
+        if (!id) throw new Error("❌ ID não retornado pelo Supabase!");
+
+        // 🔍 3. Buscar espaço por ID
+        console.log(`\n🔍 GET espaço por ID (${id})`);
+        const espacoById = await backend.getById("espaco", id);
+        console.log("✅ ESPAÇO POR ID:", espacoById);
+
+        // 🛠 4. Atualizar nome do espaço
+        console.log("\n🛠 PATCH espaço");
+        const atualizado = await backend.update("espaco", { id }, {
+          nome: "Sala de Teste Atualizada"
+        });
+        console.log("✅ ATUALIZADO:", atualizado);
+
+        // 🗑 5. Deletar espaço
+        console.log("\n🗑 DELETE espaço");
+        const deletado = await backend.remove("espaco", { id });
+        console.log("✅ DELETADO:", deletado);
+
+      } catch (error) {
+        console.error("❌ Erro durante os testes:", error.message);
+      }
+    });
+  </script>
+</body>
+</html>

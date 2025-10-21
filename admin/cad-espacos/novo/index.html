@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Espaços</title>
+    <link rel="stylesheet" href="../../../src/css/global.css">
+    <link rel="stylesheet" href="../../index.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/admin/dashboard.html" class="sidebar-nav-item">
+                            <i class="nav-icon icon-home"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-nav-item">
+                            <i class="nav-icon icon-calendar"></i>
+                            Calendário
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-equipamentos/index.html" class="sidebar-nav-item">
+                            <i class="nav-icon icon-equipamento"></i>
+                            Equipamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-espacos/index.html" class="sidebar-nav-item active">
+                            <i class="nav-icon icon-espaco"></i>
+                            Espaços
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-nav-item">
+                            <i class="nav-icon icon-config"></i>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <div class="app-content">
+            <header class="app-header">
+                <div></div>
+                <div class="app-header-title">
+                    <h2>Gerenciamento de Laboratórios Multiusos</h2>
+                </div>
+                <div class="user-profile">
+                    <i class="nav-icon icon-user"></i>
+                </div>
+            </header>
+            <main class="app-main">
+                <div class="page-title-actions">
+                    <h1>Novo Espaço</h1>
+                </div>
+                <div class="container-info-data">
+                    <div class="form-container">
+                        <form class="data-form">
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="nome">Nome do Espaço</label>
+                                    <input type="text" id="nome" placeholder="Ex: Laboratório de Física" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="descricao">Descrição</label>
+                                    <textarea id="descricao" placeholder="Descreva o uso do espaço"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="endereco">Endereço</label>
+                                    <input type="text" id="endereco" placeholder="Ex: Prédio A, Andar 2">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contato">Contato</label>
+                                    <input type="text" id="contato" placeholder="Ex: (48) 99999-9999">
+                                </div>
+                                <div class="form-group">
+                                    <label for="disponibilidade">Disponibilidade</label>
+                                    <input type="text" id="disponibilidade" placeholder="Ex: Seg a Sex, das 8h às 18h">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="departamento">Departamento</label>
+                                    <input type="text" id="departamento" placeholder="Ex: Engenharia">
+                                </div>
+                                <div class="form-group">
+                                    <label for="politica_uso">Política de Uso</label>
+                                    <input type="text" id="politica_uso"
+                                        placeholder="Ex: Reservar com 24h de antecedência">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="nr_sala">Nº da Sala</label>
+                                    <input type="text" id="nr_sala" placeholder="Ex: 203">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nr_andar">Nº do Andar</label>
+                                    <input type="text" id="nr_andar" placeholder="Ex: 2º Andar">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="imagem_url">URL da Imagem</label>
+                                    <input type="url" id="imagem_url" placeholder="Ex: /assets/imagens/lab.jpg">
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button id="cancel-btn" type="button" class="button cancel-button">Cancelar</button>
+                                <button id="save-btn" type="submit" class="button register-button">Cadastrar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Space } from "../../../src/js/schemas/space.js";
+        import { db } from "../../../src/js/lib/db/index.js";
+
+        $(".data-form").on("submit", async function (e) {
+            e.preventDefault();
+
+            const formData = {
+                nome: $("#nome").val().trim(),
+                descricao: $("#descricao").val().trim(),
+                endereco: $("#endereco").val().trim(),
+                contato: $("#contato").val().trim(),
+                disponibilidade: $("#disponibilidade").val().trim(),
+                departamento: $("#departamento").val().trim(),
+                politica_uso: $("#politica_uso").val().trim(),
+                nr_sala: $("#nr_sala").val().trim(),
+                nr_andar: $("#nr_andar").val().trim(),
+                imagem_url: $("#imagem_url").val().trim() || undefined
+            };
+
+            try {
+                const space = Space(formData);
+
+                await db.space.insert(space);
+                alert("Espaço cadastrado com sucesso!");
+
+                this.reset();
+            } catch (err) {
+                alert("Erro: " + err.message);
+            }
+        });
+
+        $("#cancel-btn").on("click", function () {
+            window.location.href = '/admin/cad-espacos/';
+        });
+
+    </script>
+</body>
+
+</html>

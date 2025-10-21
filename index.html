@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lab Multiuso - Landing Page</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" media="screen and (min-width: 481px)" href="tablet.css">
+
+  <link rel="stylesheet" media="screen and (min-width: 769px)" href="desktop.css">
+</head>
+<body>
+  <header class="header">
+    <a href="index.html">
+      <div class="logo">LabReserve</div>
+    </a>
+    <nav class="nav">
+      <a href="#">Inicio</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#espacos">Conhecer espaços</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Laboratórios Multiuso</h1>
+      <p>Plataforma para gestão de espaços, equipamentos e agendamentos.</p>
+      <a href="#espacos" class="button primary">Explorar laboratórios</a>
+    </div>
+  </section>
+
+  <section class="features" id="funcionalidades">
+    <h2>Funcionalidades</h2>    
+    <div class="cards">
+      <div class="card">
+        <h3>Equipamentos</h3>
+        <p>Consulte e gerencie os equipamentos disponíveis no laboratório.</p>
+      </div>    
+      <div class="card">
+        <h3>Agenda</h3>
+        <p>Agende horários e acompanhe a disponibilidade dos espaços.</p>
+      </div>
+      <div class="card">
+        <h3>Regulamento</h3>
+        <p>Conheça as normas de uso e condições para reserva dos ambientes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" class="sobre-sistema">
+    <div class="container">
+      <h2>Sobre o Sistema</h2>
+      <p class="descricao">
+        Nosso sistema foi desenvolvido para facilitar o agendamento e a gestão de laboratórios, espaços e equipamentos acadêmicos. Com uma interface intuitiva e moderna, buscamos oferecer praticidade tanto para alunos quanto para administradores.
+      </p>
+
+      <div class="features-sobre">
+        <div class="feature-card-sobre" style="background-image: url('https://conclinica.com.br/wp-content/uploads/2020/07/agendamento-online.jpg');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h3>Agendamento Rápido</h3>
+            <p>Reserve laboratórios de forma prática.</p>
+          </div>
+        </div>
+
+        <div class="feature-card-sobre" style="background-image: url('https://img.freepik.com/fotos-premium/as-pessoas-mao-usando-computador-laptop-procurando-informacoes-na-web-sociedade-on-line-internet-com-o-icone-da-caixa-de-pesquisa_176697-260.jpg');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h3>Busca Inteligente</h3>
+            <p>Encontre facilmente equipamentos ou laboratórios por nome.</p>
+          </div>
+        </div>
+
+        <div class="feature-card-sobre" style="background-image: url('https://forbes.com.br/wp-content/uploads/2021/06/BrandVoice_Ambipar_Pixabay.jpg');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h3>Gestão Eficiente</h3>
+            <p>Visualize reservas de forma prática.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="espacos" class="espacos">
+    <h2>Espaços Laboratoriais</h2>
+    <div class="busca-laboratorios">
+      <h2>ENCONTRE O QUE PRECISA</h2> 
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Procure equipamentos, laboratórios..."/>
+      </div>
+      <button class="btn-buscar">BUSCAR</button>
+    </div>
+    <div class="espacos-grid">  
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <h2>Fale Conosco</h2>
+    <p>Email: suporte@labmultiuso.com</p>
+    <p>Telefone: (48 99999-9999)</p>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Laboratório Multiuso</p>
+  </footer>
+
+  <script type="module">
+    const SUPABASE_URL = "https://xvlggnqoaptrzaaaeiem.supabase.co";  
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTQzMTEsImV4cCI6MjA2NzA3MDMxMX0.G6KmXZ07TwWIn_02-CVIuq4y3Fo65A_mRCKAEI5PMqA";
+  
+    async function buscarLaboratorios() {
+      const resposta = await fetch(`${SUPABASE_URL}/rest/v1/espaco?select=id, nome, imagem_url`, {
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+        }
+      });
+  
+      if (!resposta.ok) {
+        console.error("Erro ao buscar laboratórios");
+        return;
+      }
+  
+      const dados = await resposta.json();
+      const container = document.querySelector('.espacos-grid');
+      container.innerHTML = ''; 
+  
+      dados.forEach(lab => {
+        const link = document.createElement('a');
+        link.href = `/detalhes-lab03.html?lab=${lab.id}`;
+
+        const card = document.createElement('div');
+        card.className = 'espaco-card';
+        card.style.backgroundImage = `url('${lab.imagem_url}')`;
+
+        const overlay = document.createElement('div');
+        overlay.className = 'espaco-overlay';
+
+        const titulo = document.createElement('h3');
+        titulo.textContent = lab.nome;
+
+        overlay.appendChild(titulo);
+        card.appendChild(overlay);
+        link.appendChild(card);
+        container.appendChild(link);
+      });
+
+      configurarFiltro();
+    }
+  
+    function configurarFiltro() {
+      const inputBusca = document.querySelector('.search-box input');
+      const botaoBuscar = document.querySelector('.btn-buscar');
+      const container = document.querySelector('.espacos-grid');
+  
+      botaoBuscar.addEventListener('click', () => {
+        const termo = inputBusca.value.toLowerCase();
+        const cards = container.querySelectorAll('.espaco-card');
+  
+        cards.forEach(card => {
+          const titulo = card.querySelector('h3')?.textContent.toLowerCase() || '';
+          const corresponde = titulo.includes(termo);
+          card.closest('a').style.display = corresponde ? 'block' : 'none';
+        });
+      });
+    }
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      buscarLaboratorios();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+.container-info-data {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5rem;
+}
+

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Equipamentos</title>
+    <link rel="stylesheet" href="../../src/css/global.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <div class="app-layout">
+        <aside class="sidebar">
+            <div class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                    <a href="/admin/dashboard.html" class="sidebar-nav-item">
+                        <i class="nav-icon icon-home"></i>
+                        Dashboard
+                    </a>
+                    </li>
+                    <li>
+                    <a href="#" class="sidebar-nav-item">
+                        <i class="nav-icon icon-calendar"></i>
+                        Calendário
+                    </a>
+                    </li>
+                    <li>
+                    <a href="/admin/cad-equipamentos/index.html" class="sidebar-nav-item active">
+                        <i class="nav-icon icon-equipamento"></i>
+                        Equipamentos
+                    </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-espacos/index.html" class="sidebar-nav-item">
+                            <i class="nav-icon icon-espaco"></i>
+                            Espaços
+                        </a>
+                    </li>
+                    <li>
+                    <a href="#" class="sidebar-nav-item">
+                        <i class="nav-icon icon-config"></i>
+                        Configurações
+                    </a>
+                    </li>
+                </ul>
+            </nav> 
+        </aside>
+        <div class="app-content">
+            <header class="app-header">
+                <div></div>
+                <div class="app-header-title">
+                    <h2>Gerenciamento de Laboratórios Multiusos</h2>
+                </div>
+                <div class="user-profile">
+                    <i class="nav-icon icon-user"></i>
+                </div>
+            </header>
+            <main class="app-main">
+                <div class="page-title-actions">
+                    <h1>Equipamentos</h1>
+                    <button onclick="window.location.href='/admin/cad-equipamentos/novo/index.html'" class="button primary">+ Novo Equipamento</button>
+                </div>
+                <div class="container-info-data">
+                    <div class="list-header">
+                        <div class="search-input">
+                        <i class="nav-icon icon-search search-icon" alt="Search Icon"></i>
+                        <input type="text" id="search-input" placeholder="Buscar equipamentos...">
+                        </div>
+                    </div>
+
+                    <div class="table-container">
+                        <table id="table-data">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>EQUIPAMENTO</th>
+                                <th>Nº PATRIMÔNIO</th>
+                                <th>RESPONSÁVEL</th>
+                                <th>CATEGORIA</th>
+                                <th>AÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td> Laboratório de Química</td>
+                                <td>Rua A, nº 100</td>
+                                <td>(48) 99999-9999</td>
+                                <td>Biologia</td>
+                                <td>
+                                    <a href="#" class="action-link-edit">Editar</a>
+                                    <a href="#" class="action-link-delete">Excluir</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><svg class="icon-visualizar" fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 494.907 494.907" xml:space="preserve" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #000000);"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M70.571,459.196c-6.131,0-11.114-4.983-11.114-11.106V105.993c0-6.123,4.983-11.104,11.114-11.104H308.28 c6.131,0,11.115,4.98,11.115,11.104v147.911c10.565-3.519,21.644-5.855,33.132-6.844V105.993c0-24.396-19.849-44.236-44.247-44.236 H121.157V44.236c0-6.124,4.982-11.104,11.113-11.104h237.711c6.13,0,11.113,4.98,11.113,11.104V247.36 c11.517,1.279,22.586,4.013,33.131,7.839V44.236C414.225,19.841,394.378,0,369.981,0H132.27c-24.397,0-44.245,19.841-44.245,44.236 v17.521H70.571c-24.397,0-44.246,19.841-44.246,44.236V448.09c0,24.395,19.849,44.238,44.246,44.238h190.666 c-9.543-9.811-17.714-20.943-24.203-33.132H70.571z"></path> <path d="M126.913,190.86h95.61c9.158,0,16.565-7.418,16.565-16.565c0-9.149-7.407-16.566-16.565-16.566h-95.61 c-9.153,0-16.561,7.418-16.561,16.566C110.352,183.442,117.759,190.86,126.913,190.86z"></path> <path d="M268.514,247.846c0-9.148-7.407-16.566-16.566-16.566H126.913c-9.153,0-16.561,7.418-16.561,16.566 c0,9.149,7.407,16.566,16.561,16.566h125.035C261.107,264.412,268.514,256.995,268.514,247.846z"></path> <path d="M249.055,304.808H126.913c-9.153,0-16.561,7.417-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h103.521 C235.172,326.022,241.483,314.926,249.055,304.808z"></path> <path d="M126.913,378.342c-9.153,0-16.561,7.418-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h94.737 c-0.907-6.584-1.552-13.267-1.552-20.103c0-4.4,0.274-8.728,0.664-13.029H126.913z"></path> <path d="M365.047,357.148c-28.438,0-53.614,23.563-63.545,34.223c9.931,10.655,35.107,34.209,63.545,34.209 c28.553,0,53.658-23.547,63.545-34.199C418.675,380.728,393.504,357.148,365.047,357.148z M365.047,416.22 c-13.718,0-24.846-11.128-24.846-24.849c0-13.732,11.128-24.847,24.846-24.847s24.846,11.114,24.846,24.847 C389.893,405.092,378.765,416.22,365.047,416.22z"></path> <path d="M365.047,287.837c-57.186,0-103.536,46.349-103.536,103.534c0,57.173,46.35,103.536,103.536,103.536 c57.186,0,103.535-46.363,103.535-103.536C468.582,334.185,422.233,287.837,365.047,287.837z M365.047,442.143 c-44.681,0-79.594-43.791-81.064-45.652c-2.345-3.008-2.345-7.23,0-10.23c1.471-1.868,36.384-45.678,81.064-45.678 c44.679,0,79.592,43.809,81.064,45.678c2.345,3,2.345,7.223,0,10.23C444.639,398.353,409.726,442.143,365.047,442.143z"></path> </g> </g></svg></i></td>
+                                <td>Laboratório de Física</td>
+                                <td>Rua B, nº 200</td>
+                                <td>(48) 98888-8888</td>
+                                <td>Tecnologia</td>
+                                <td>
+                                    <a href="#" class="action-link-edit">Editar</a>
+                                    <a href="#" class="action-link-delete">Excluir</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div class="pagination">
+                            <span class="info-pagination">
+                                Mostrando resultados de
+                                <span class="page-init">21</span> a 
+                                <span class="page-end">40</span> de 
+                                <span class="page-total">200</span>
+                            </span>
+                            <div class="page-buttons">
+                                <button>Anterior</button>
+                                <button class="active">1</button>
+                                <button>2</button>
+                                <button>3</button>
+                                <button>Próximo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </main>
+        </div>
+    </div>
+
+    <div id="form-modal-backdrop" class="modal-backdrop">
+        <div class="modal-content">
+            <h2 id="container-form-title"></h2>
+            <form id="container-form">
+                <div class="label-group">
+                    <label for="id">ID:</label>
+                    <input name="id" id="id" disabled>
+                </div>
+                <div class="label-group">
+                    <label for="nome">Nome:</label>
+                    <input name="nome" id="nome">
+                </div>
+                <div class="label-group">
+                    <label for="nr_patrimonio">N° patrimônio:</label>
+                    <input name="nr_patrimonio" id="nr_patrimonio">
+                </div>
+                <div class="label-group">
+                    <label for="nm_responsavel">Responsável:</label>
+                    <input name="nm_responsavel" id="nm_responsavel">
+                </div>
+                <div class="label-group">
+                    <label for="contato_responsavel">Contato:</label>
+                    <input name="contato_responsavel" id="contato_responsavel">
+                </div>
+                <div class="label-group">
+                    <label for="categoria">Categoria:</label>
+                    <input name="categoria" id="categoria">
+                </div>
+                <div class="label-group">
+                    <label for="descricao">Descrição:</label>
+                    <input name="descricao" id="descricao">
+                </div>
+                <div class="label-group">
+                    <label id="desc-space" for="espaco_id">Laboratório:</label>
+                    <input name="espaco_id" id="espaco_id">
+                </div>
+                <div class="label-group">
+                    <label for="imagem_url">Imagem URL:</label>
+                    <input name="imagem_url" id="imagem_url">
+                </div>
+                <div>
+                    <button type="submit" id="save-btn">Salvar</button>
+                    <button type="button" id="cancel-btn">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="confirmation-modal" class="modal-backdrop">
+    <div class="confirmModal">
+        <div class="modal-content">
+        <button class="exit-button" id="close-confirmation">
+            <svg height="20px" viewBox="0 0 384 512">
+            <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+            </svg>
+        </button>
+        <div class="confirmModal-content">
+            <p class="confirm-heading">Deseja realmente excluir?</p>
+            <p class="confirm-description">Esta ação não poderá ser desfeita.</p>
+        </div>
+        <div class="confirm-button-wrapper">
+            <button class="card-button primary" id="delete-btn">Excluir</button>
+            <button class="card-button secondary" id="close-btn">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="module">
+        import { db } from "../../src/js/lib/db/index.js";
+        import { queryParams } from "../../src/js/lib/queryParam.js";
+        import { debounce, builderQueryList } from "../../src/js/lib/utils/index.js";
+
+        let allEquipment = [];
+        const PAGE_SIZE = 10;
+
+        function renderPagination(total, currentPage) {
+            const totalPages = Math.ceil(total / PAGE_SIZE);
+            const $buttons = $(".page-buttons");
+            $buttons.empty();
+
+            const createButton = (page, label = page, active = false) => {
+                return `<button ${active ? 'class="active"' : ''} data-page="${page}">${label}</button>`;
+            };
+
+            if (currentPage > 1) {
+                $buttons.append(createButton(currentPage - 1, "Anterior"));
+            }
+
+            for (let i = 1; i <= totalPages; i++) {
+                $buttons.append(createButton(i, i, i === currentPage));
+            }
+
+            if (currentPage < totalPages) {
+                $buttons.append(createButton(currentPage + 1, "Próximo"));
+            }
+
+            $(".page-buttons button").click(function () {
+                const selectedPage = parseInt($(this).data("page"));
+                if (!isNaN(selectedPage)) {
+                    queryParams.set("page", selectedPage);
+                    const termo = $("#search-input").val();
+                    searchFilters(selectedPage, termo);
+                }
+            });
+        }
+
+        async function searchFilters(page = 1, termoBusca = '') {
+            const offset = (page - 1) * PAGE_SIZE;
+            const filtrados = builderQueryList(allEquipment, termoBusca, ['nome', 'categoria', 'nr_patrimonio']);
+            const pagina = filtrados.slice(offset, offset + PAGE_SIZE);
+
+            const $tbody = $("#table-data tbody");
+            $tbody.empty();
+
+            const svg = '<svg class="icon-visualizar" fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 494.907 494.907" xml:space="preserve" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #000000);"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M70.571,459.196c-6.131,0-11.114-4.983-11.114-11.106V105.993c0-6.123,4.983-11.104,11.114-11.104H308.28 c6.131,0,11.115,4.98,11.115,11.104v147.911c10.565-3.519,21.644-5.855,33.132-6.844V105.993c0-24.396-19.849-44.236-44.247-44.236 H121.157V44.236c0-6.124,4.982-11.104,11.113-11.104h237.711c6.13,0,11.113,4.98,11.113,11.104V247.36 c11.517,1.279,22.586,4.013,33.131,7.839V44.236C414.225,19.841,394.378,0,369.981,0H132.27c-24.397,0-44.245,19.841-44.245,44.236 v17.521H70.571c-24.397,0-44.246,19.841-44.246,44.236V448.09c0,24.395,19.849,44.238,44.246,44.238h190.666 c-9.543-9.811-17.714-20.943-24.203-33.132H70.571z"></path> <path d="M126.913,190.86h95.61c9.158,0,16.565-7.418,16.565-16.565c0-9.149-7.407-16.566-16.565-16.566h-95.61 c-9.153,0-16.561,7.418-16.561,16.566C110.352,183.442,117.759,190.86,126.913,190.86z"></path> <path d="M268.514,247.846c0-9.148-7.407-16.566-16.566-16.566H126.913c-9.153,0-16.561,7.418-16.561,16.566 c0,9.149,7.407,16.566,16.561,16.566h125.035C261.107,264.412,268.514,256.995,268.514,247.846z"></path> <path d="M249.055,304.808H126.913c-9.153,0-16.561,7.417-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h103.521 C235.172,326.022,241.483,314.926,249.055,304.808z"></path> <path d="M126.913,378.342c-9.153,0-16.561,7.418-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h94.737 c-0.907-6.584-1.552-13.267-1.552-20.103c0-4.4,0.274-8.728,0.664-13.029H126.913z"></path> <path d="M365.047,357.148c-28.438,0-53.614,23.563-63.545,34.223c9.931,10.655,35.107,34.209,63.545,34.209 c28.553,0,53.658-23.547,63.545-34.199C418.675,380.728,393.504,357.148,365.047,357.148z M365.047,416.22 c-13.718,0-24.846-11.128-24.846-24.849c0-13.732,11.128-24.847,24.846-24.847s24.846,11.114,24.846,24.847 C389.893,405.092,378.765,416.22,365.047,416.22z"></path> <path d="M365.047,287.837c-57.186,0-103.536,46.349-103.536,103.534c0,57.173,46.35,103.536,103.536,103.536 c57.186,0,103.535-46.363,103.535-103.536C468.582,334.185,422.233,287.837,365.047,287.837z M365.047,442.143 c-44.681,0-79.594-43.791-81.064-45.652c-2.345-3.008-2.345-7.23,0-10.23c1.471-1.868,36.384-45.678,81.064-45.678 c44.679,0,79.592,43.809,81.064,45.678c2.345,3,2.345,7.223,0,10.23C444.639,398.353,409.726,442.143,365.047,442.143z"></path> </g> </g></svg>';
+
+            if (pagina.length === 0) {
+                $tbody.html(`<tr><td colspan="6" style="text-align:center;">Nenhum resultado encontrado</td></tr>`);
+            } else {
+                pagina.forEach(item => {
+                    const row = `
+                        <tr>
+                            <td class="view-item" data-id="${item.id}">${svg}</td>
+                            <td>${item.nome || "—"}</td>
+                            <td>${item.nr_patrimonio || "—"}</td>
+                            <td>${item.nm_responsavel || "—"}</td>
+                            <td>${item.categoria || "—"}</td>
+                            <td>
+                                <a href="#" class="action-link-edit" data-id="${item.id}">Editar</a>
+                                <a href="#" class="action-link-delete" data-id="${item.id}">Excluir</a>
+                            </td>
+                        </tr>
+                    `;
+                    $tbody.append(row);
+                });
+            }
+
+            $(".page-total").text(filtrados.length);
+            $(".page-init").text(filtrados.length > 0 ? offset + 1 : 0);
+            $(".page-end").text(Math.min(offset + PAGE_SIZE, filtrados.length));
+
+            renderPagination(filtrados.length, page);
+        }
+
+        function renderFormModal(mode = "view", data = {}, saveAction = () => {}) {
+            const $form = $("#container-form");
+            const $modal = $("#form-modal-backdrop");
+
+            $("#container-form-title").text(
+                mode === "view" ? "Visualizar Equipamento" : "Editar Equipamento"
+            );
+
+            for (const key in data) {
+                $form.find(`[name="${key}"]`).val(data[key] || "");
+            }
+
+            $form.find("#desc-space").text(
+                data.espaco_id ? "Laboratório:" : "Laboratório (não definido)"
+            );
+            try {
+                $("#espaco_id").val(`(${data.espaco_id} - ${data.nameSpace || "Descrição não encontrada"})`);
+            } catch {
+                $("#espaco_id").val("(Laboratório não encontrado)");
+            }
+
+            $form.find("input").each(function () {
+                const name = $(this).attr("name");
+                $(this).prop("disabled", mode === "view" || name === "id" || name === "espaco_id");
+            });
+
+            $("#save-btn").toggle(mode === "edit");
+
+            $("#save-btn").off("click").on("click", function (e) {
+                e.preventDefault();
+                const formData = {};
+                $form.serializeArray().forEach(({ name, value }) => {
+                    formData[name] = value;
+                });
+                saveAction(formData);
+                $modal.removeClass("show");
+                $form[0].reset();
+            });
+
+            $modal.off("click").on("click", function (e) {
+                if (e.target === this || e.target.id === "cancel-btn") {
+                    $modal.removeClass("show");
+                    $form[0].reset();
+                }
+            });
+
+            $modal.addClass("show");
+        }
+
+        function renderConfirmModal(title, message, onConfirm) {
+            const $modal = $('#confirmation-modal');
+            if ($modal.length === 0) return;
+
+            $modal.find('.confirm-heading').text(title || 'Tem certeza?');
+            $modal.find('.confirm-description').text(message || 'Esta ação não poderá ser desfeita.');
+            $modal.addClass('show');
+
+            const $confirm = $modal.find('#delete-btn').clone(true);
+            const $cancel = $modal.find('#close-btn').clone(true);
+            const $close = $modal.find('#close-confirmation').clone(true);
+
+            $modal.find('#delete-btn').replaceWith($confirm);
+            $modal.find('#close-btn').replaceWith($cancel);
+            $modal.find('#close-confirmation').replaceWith($close);
+
+            $confirm.on('click', function () {
+                if (typeof onConfirm === 'function') onConfirm();
+                $modal.removeClass('show');
+            });
+
+            const cancelHandler = () => $modal.removeClass('show');
+            $cancel.on('click', cancelHandler);
+            $close.on('click', cancelHandler);
+        }
+
+        $(document).ready(async function () {
+            const page = parseInt(queryParams.get("page") || "1");
+
+            try {
+                $("#table-data tbody").html(`<tr class="loading-row"><td colspan="6">Carregando dados...</td></tr>`);
+
+                allEquipment = await db.equipment.select();
+
+                const termoBusca = queryParams.get("search") || "";
+                $("#search-input").val(termoBusca);
+
+                searchFilters(page, termoBusca);
+
+                $("#search-input").on("input", debounce(function () {
+                    const termo = $("#search-input").val();
+                    queryParams.set("search", termo);
+                    queryParams.set("page", 1);
+                    searchFilters(1, termo);
+                }, 300));
+
+                $(document).on("click", ".view-item", async function () {
+                    const id = $(this).data("id");
+                    const item = await db.equipment.selectId(id);
+                    const { nome } = await db.space.selectId(item.espaco_id);
+                    item.nameSpace = nome;
+                    console.log(nome);
+                    renderFormModal("view", item);
+                });
+
+                $(document).on("click", ".action-link-edit", async function (e) {
+                    e.preventDefault();
+                    const id = $(this).data("id");
+                    const item = await db.equipment.selectId(id);
+                    const { nome } = await db.space.selectId(item.espaco_id);
+                    item.nameSpace = nome;
+                    console.log(nome);
+                    renderFormModal("edit", item, async (formData) => {
+                        try {
+                            await db.equipment.patch({ id }, formData);
+                            allEquipment = allEquipment.map(i => i.id === id ? { ...i, ...formData } : i);
+                            searchFilters(page, $("#search-input").val());
+                        } catch (error) {
+                            console.error("Erro ao atualizar equipamento:", error);
+                        }
+                    });
+                });
+
+                $(document).on("click", ".action-link-delete", function (e) {
+                    e.preventDefault();
+                    const id = $(this).data("id");
+                    const item = allEquipment.find(i => i.id === id);
+
+                    renderConfirmModal(
+                        `Excluir Equipamento: ${item.nome}`,
+                        `Você tem certeza que deseja excluir o equipamento "${item.nome}"? Esta ação não poderá ser desfeita.`,
+                        async () => {
+                            try {
+                                await db.equipment.delete({ id });
+                                allEquipment = allEquipment.filter(i => i.id !== id);
+                                searchFilters(page, $("#search-input").val());
+                            } catch (error) {
+                                console.error("Erro ao excluir equipamento:", error);
+                            }
+                        }
+                    );
+                });
+            } catch (err) {
+                console.error("Erro ao carregar equipamentos:", err);
+                $("#table-data tbody").html(`<tr><td colspan="6" style="text-align:center;color:var(--color-accent)">Erro ao carregar dados</td></tr>`);
+                renderPagination(0, 1);
+            }
+        });
+    </script>
+
+</body>
+
+</html>

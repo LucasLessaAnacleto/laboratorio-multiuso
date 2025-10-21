@@ -1,0 +1,11 @@
+id;nome;descricao;endereco;contato;disponibilidade;departamento;politica_uso;nr_sala;nr_andar;imagem_url
+1;Lab Biologia Molecular;Equipado para análises genéticas;Rua Alfa; (11) 99999-0001;De segunda a sexta, das 08h às 17h;Biologia;Agendamento prévio;101;1;https://example.com/lab1.jpg
+2;Lab Química Orgânica;Ideal para síntese e purificação;Rua Beta; (11) 99999-0002;De segunda a sexta, das 08h às 17h;Química;Uso com supervisão;102;1;https://example.com/lab2.jpg
+3;Lab Física Experimental;Experimentos com óptica e mecânica;Rua Gama; (11) 99999-0003;De segunda a sexta, das 08h às 17h;Física;Reservar com 48h de antecedência;103;2;https://example.com/lab3.jpg
+4;Lab Engenharia Civil;Testes de materiais e estruturas;Rua Delta; (11) 99999-0004;De segunda a sexta, das 08h às 17h;Engenharia Civil;Somente para projetos registrados;104;2;https://example.com/lab4.jpg
+5;Lab Computação Científica;Ambiente para simulações e IA;Rua Épsilon; (11) 99999-0005;De segunda a sexta, das 08h às 17h;Computação;Política de uso compartilhado;105;3;https://example.com/lab5.jpg
+6;Lab Farmacologia;Equipamentos para testes clínicos;Rua Zeta; (11) 99999-0006;De segunda a sexta, das 08h às 17h;Farmácia;Requer termo de responsabilidade;106;3;https://example.com/lab6.jpg
+7;Lab Medicina Veterinária;Espaço para análises biológicas;Rua Eta; (11) 99999-0007;De segunda a sexta, das 08h às 17h;Veterinária;Agendamento via sistema;107;4;https://example.com/lab7.jpg
+8;Lab Engenharia Mecânica;Protótipos e testes térmicos;Rua Teta; (11) 99999-0008;De segunda a sexta, das 08h às 17h;Engenharia Mecânica;Uso com técnico presente;108;4;https://example.com/lab8.jpg
+9;Lab Nanotecnologia;Microscopia e manipulação de nanoestruturas;Rua Iota; (11) 99999-0009;De segunda a sexta, das 08h às 17h;Nanotecnologia;Autorização do coordenador;109;5;https://example.com/lab9.jpg
+10;Lab Bioinformática;Análise de dados genômicos;Rua Kappa; (11) 99999-0010;De segunda a sexta, das 08h às 17h;Bioinformática;Política de confidencialidade;110;5;https://example.com/lab10.jpg

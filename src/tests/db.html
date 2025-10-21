@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teste DB (src/js/lib/db/index.js)</title>
+</head>
+<body>
+  <h1>Teste: DB (src/js/lib/db/index.js)</h1>
+
+  <script type="module">
+    import db from "../../src/js/lib/db/index.js";
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      console.log("🚀 Iniciando testes com o módulo db...");
+
+      try {
+        // 🔍 1. Buscar todos os espaços
+        console.log("🔍 SELECT todos os espaços");
+        const todos = await db.space.select();
+        console.log("✅ TODOS OS ESPAÇOS:", todos);
+
+        // 🔍 2. Buscar espaços por filtro (departamento)
+        console.log("🔍 SELECT com filtro");
+        const filtrados = await db.space.select({ departamento: "Tecnologia" });
+        console.log("✅ ESPAÇOS FILTRADOS:", filtrados);
+
+        // 📨 4. Inserir novo espaço com UPSERT
+        console.log("📨 UPSERT novo espaço");
+        const novoEspaco = {
+          nome: "Laboratório de Teste",
+          endereco: "Prédio A",
+          contato: "48999999999",
+          disponibilidade: "Seg-Sex 8h às 18h",
+          departamento: "Informática",
+          politica_uso: "Agendar com 1 dia de antecedência",
+          nr_sala: "204",
+          nr_andar: "2",
+          imagem_url: "https://via.placeholder.com/150"
+        };
+        const inserido = await db.space.upsert(novoEspaco);
+        console.log("✅ INSERIDO:", inserido);
+
+        const id = inserido[0]?.id;
+        if (!id) throw new Error("❌ ID não retornado após upsert");
+
+        // 🔍 5. Buscar espaço por ID
+        console.log(`🔍 SELECT por ID (${id})`);
+        const porId = await db.space.selectId(id);
+        console.log("✅ ESPAÇO POR ID:", porId);
+
+        // 🛠 6. Atualizar nome do espaço
+        console.log("🛠 PATCH no espaço");
+        const atualizado = await db.space.patch({ id }, { nome: "Laboratório Atualizado" });
+        console.log("✅ ATUALIZADO:", atualizado);
+
+        // 🗑 7. Deletar espaço
+        console.log("🗑 DELETE espaço");
+        const deletado = await db.space.delete({ id });
+        console.log("✅ DELETADO:", deletado);
+
+      } catch (err) {
+        console.error("❌ Erro durante os testes:", err.message);
+      }
+    });
+  </script>
+</body>
+</html>

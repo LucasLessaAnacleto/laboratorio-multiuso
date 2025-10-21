@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LabReserve - Dashboard</title>
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" href="../src/css/global.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <aside class="sidebar">
+            <div class="sidebar-logo"></div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li>
+                        <a href="/admin/dashboard.html" class="sidebar-nav-item active">
+                            <i class="nav-icon icon-home"></i>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-nav-item">
+                            <i class="nav-icon icon-calendar"></i>
+                            Calendário
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-equipamentos/index.html" class="sidebar-nav-item">
+                            <i class="nav-icon icon-equipamento"></i>
+                            Equipamentos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/admin/cad-espacos/index.html" class="sidebar-nav-item">
+                            <i class="nav-icon icon-espaco"></i>
+                            Espaços
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="sidebar-nav-item">
+                            <i class="nav-icon icon-config"></i>
+                            Configurações
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        <main class="content-area">
+            <header class="topbar">
+                <div class="topbar-right">
+                    <img src="../src/assets/user.png" alt="perfil" class="profile-picture">
+                </div>
+            </header>
+
+            <section class="welcome-section">
+                <h1>Olá, Usuário!</h1>
+                <p>Bem-vindo(a) de volta ao LabReserve. Aqui está um resumo rápido da sua atividade.</p>
+            </section>
+
+            <section class="upcoming-appointments">
+                <h2>Próximos Agendamentos</h2>
+                <div class="appointments-table">
+                    <table id="table-data">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>NOME</th>
+                                <th>DATA RESERVA</th>
+                                <th>HORA</th>
+                                <th>DESCRIÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td> Laboratório de Química</td>
+                                <td>Rua A, nº 100</td>
+                                <td>(48) 99999-9999</td>
+                                <td>id - nome espaço</td>
+                            </tr>
+                            <tr>
+                                <td><svg class="icon-visualizar" fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 494.907 494.907" xml:space="preserve" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #000000);"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M70.571,459.196c-6.131,0-11.114-4.983-11.114-11.106V105.993c0-6.123,4.983-11.104,11.114-11.104H308.28 c6.131,0,11.115,4.98,11.115,11.104v147.911c10.565-3.519,21.644-5.855,33.132-6.844V105.993c0-24.396-19.849-44.236-44.247-44.236 H121.157V44.236c0-6.124,4.982-11.104,11.113-11.104h237.711c6.13,0,11.113,4.98,11.113,11.104V247.36 c11.517,1.279,22.586,4.013,33.131,7.839V44.236C414.225,19.841,394.378,0,369.981,0H132.27c-24.397,0-44.245,19.841-44.245,44.236 v17.521H70.571c-24.397,0-44.246,19.841-44.246,44.236V448.09c0,24.395,19.849,44.238,44.246,44.238h190.666 c-9.543-9.811-17.714-20.943-24.203-33.132H70.571z"></path> <path d="M126.913,190.86h95.61c9.158,0,16.565-7.418,16.565-16.565c0-9.149-7.407-16.566-16.565-16.566h-95.61 c-9.153,0-16.561,7.418-16.561,16.566C110.352,183.442,117.759,190.86,126.913,190.86z"></path> <path d="M268.514,247.846c0-9.148-7.407-16.566-16.566-16.566H126.913c-9.153,0-16.561,7.418-16.561,16.566 c0,9.149,7.407,16.566,16.561,16.566h125.035C261.107,264.412,268.514,256.995,268.514,247.846z"></path> <path d="M249.055,304.808H126.913c-9.153,0-16.561,7.417-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h103.521 C235.172,326.022,241.483,314.926,249.055,304.808z"></path> <path d="M126.913,378.342c-9.153,0-16.561,7.418-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h94.737 c-0.907-6.584-1.552-13.267-1.552-20.103c0-4.4,0.274-8.728,0.664-13.029H126.913z"></path> <path d="M365.047,357.148c-28.438,0-53.614,23.563-63.545,34.223c9.931,10.655,35.107,34.209,63.545,34.209 c28.553,0,53.658-23.547,63.545-34.199C418.675,380.728,393.504,357.148,365.047,357.148z M365.047,416.22 c-13.718,0-24.846-11.128-24.846-24.849c0-13.732,11.128-24.847,24.846-24.847s24.846,11.114,24.846,24.847 C389.893,405.092,378.765,416.22,365.047,416.22z"></path> <path d="M365.047,287.837c-57.186,0-103.536,46.349-103.536,103.534c0,57.173,46.35,103.536,103.536,103.536 c57.186,0,103.535-46.363,103.535-103.536C468.582,334.185,422.233,287.837,365.047,287.837z M365.047,442.143 c-44.681,0-79.594-43.791-81.064-45.652c-2.345-3.008-2.345-7.23,0-10.23c1.471-1.868,36.384-45.678,81.064-45.678 c44.679,0,79.592,43.809,81.064,45.678c2.345,3,2.345,7.223,0,10.23C444.639,398.353,409.726,442.143,365.047,442.143z"></path> </g> </g></svg></td>
+                                <td>Laboratório de Física</td>
+                                <td>Rua B, nº 200</td>
+                                <td>(48) 98888-8888</td>
+                                <td>id - nome espaço</td>
+                            </tr>
+                        </tbody>
+                        </table>
+                   
+                </div>
+            </section>
+        </main>
+    </div>
+
+
+    <div id="form-modal-backdrop" class="modal-backdrop">
+        <div class="modal-content">
+          <h2 id="container-form-title"></h2>
+          <form id="container-form">
+            <div class="label-group">
+              <label for="id">ID:</label>
+              <input name="id" id="id" disabled>
+            </div>
+            <div class="label-group">
+              <label for="nm_usuario">Nome do Usuário:</label>
+              <input name="nm_usuario" id="nm_usuario">
+            </div>
+            <div class="label-group">
+              <label for="contato_usuario">Contato:</label>
+              <input name="contato_usuario" id="contato_usuario">
+            </div>
+            <div class="label-group">
+              <label for="dt_reserva">Data da Reserva:</label>
+              <input name="dt_reserva" id="dt_reserva" type="date">
+            </div>
+            <div class="label-group">
+              <label for="hr_ini_fim">Horário:</label>
+              <input name="hr_ini_fim" id="hr_ini_fim">
+            </div>
+            <div class="label-group">
+              <label for="dt_solicitacao">Data da Solicitação:</label>
+              <input name="dt_solicitacao" id="dt_solicitacao" disabled>
+            </div>
+            <div class="label-group">
+              <label for="espaco_id">Espaço ID:</label>
+              <input name="espaco_id" id="espaco_id">
+            </div>
+            <div class="label-group">
+              <label for="ds_reserva">Descrição:</label>
+              <input name="ds_reserva" id="ds_reserva" rows="3"/>
+            </div>
+      
+            <div>
+              <button type="submit" id="save-btn">Salvar</button>
+              <button type="button" id="cancel-btn">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+    <script>
+        const supabaseUrl = "https://xvlggnqoaptrzaaaeiem.supabase.co";
+        const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTQzMTEsImV4cCI6MjA2NzA3MDMxMX0.G6KmXZ07TwWIn_02-CVIuq4y3Fo65A_mRCKAEI5PMqA";
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+      
+        async function carregarReservas() {
+          const { data, error } = await supabaseClient
+            .from("reserva")
+            .select("*");
+
+            console.log(data);
+      
+          if (error) {
+            console.error("Erro ao carregar reservas:", error);
+            return;
+          }
+      
+          const $tbody = $("#table-data tbody");
+          $tbody.empty(); 
+
+      
+          data.forEach((reserva) => {
+            const svg = `<svg class="icon-visualizar" data-id="${reserva.id}" fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 494.907 494.907" xml:space="preserve" data-darkreader-inline-fill="" style="--darkreader-inline-fill: var(--darkreader-background-000000, #000000);"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M70.571,459.196c-6.131,0-11.114-4.983-11.114-11.106V105.993c0-6.123,4.983-11.104,11.114-11.104H308.28 c6.131,0,11.115,4.98,11.115,11.104v147.911c10.565-3.519,21.644-5.855,33.132-6.844V105.993c0-24.396-19.849-44.236-44.247-44.236 H121.157V44.236c0-6.124,4.982-11.104,11.113-11.104h237.711c6.13,0,11.113,4.98,11.113,11.104V247.36 c11.517,1.279,22.586,4.013,33.131,7.839V44.236C414.225,19.841,394.378,0,369.981,0H132.27c-24.397,0-44.245,19.841-44.245,44.236 v17.521H70.571c-24.397,0-44.246,19.841-44.246,44.236V448.09c0,24.395,19.849,44.238,44.246,44.238h190.666 c-9.543-9.811-17.714-20.943-24.203-33.132H70.571z"></path> <path d="M126.913,190.86h95.61c9.158,0,16.565-7.418,16.565-16.565c0-9.149-7.407-16.566-16.565-16.566h-95.61 c-9.153,0-16.561,7.418-16.561,16.566C110.352,183.442,117.759,190.86,126.913,190.86z"></path> <path d="M268.514,247.846c0-9.148-7.407-16.566-16.566-16.566H126.913c-9.153,0-16.561,7.418-16.561,16.566 c0,9.149,7.407,16.566,16.561,16.566h125.035C261.107,264.412,268.514,256.995,268.514,247.846z"></path> <path d="M249.055,304.808H126.913c-9.153,0-16.561,7.417-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h103.521 C235.172,326.022,241.483,314.926,249.055,304.808z"></path> <path d="M126.913,378.342c-9.153,0-16.561,7.418-16.561,16.565c0,9.148,7.407,16.566,16.561,16.566h94.737 c-0.907-6.584-1.552-13.267-1.552-20.103c0-4.4,0.274-8.728,0.664-13.029H126.913z"></path> <path d="M365.047,357.148c-28.438,0-53.614,23.563-63.545,34.223c9.931,10.655,35.107,34.209,63.545,34.209 c28.553,0,53.658-23.547,63.545-34.199C418.675,380.728,393.504,357.148,365.047,357.148z M365.047,416.22 c-13.718,0-24.846-11.128-24.846-24.849c0-13.732,11.128-24.847,24.846-24.847s24.846,11.114,24.846,24.847 C389.893,405.092,378.765,416.22,365.047,416.22z"></path> <path d="M365.047,287.837c-57.186,0-103.536,46.349-103.536,103.534c0,57.173,46.35,103.536,103.536,103.536 c57.186,0,103.535-46.363,103.535-103.536C468.582,334.185,422.233,287.837,365.047,287.837z M365.047,442.143 c-44.681,0-79.594-43.791-81.064-45.652c-2.345-3.008-2.345-7.23,0-10.23c1.471-1.868,36.384-45.678,81.064-45.678 c44.679,0,79.592,43.809,81.064,45.678c2.345,3,2.345,7.223,0,10.23C444.639,398.353,409.726,442.143,365.047,442.143z"></path> </g> </g></svg>`;
+            const row = `
+              <tr>
+                <td>
+                  ${svg}
+                </td>
+                <td>${reserva.nm_usuario}</td>
+                <td>${reserva.dt_reserva}</td>
+                <td>${reserva.hr_ini_fim}</td>
+                <td>${reserva.ds_reserva}</td>
+               
+              </tr>
+            `;
+            $tbody.append(row);
+          });
+        }
+
+        function renderFormModal(mode = "view", data = {}, saveAction = () => {}) {
+            const $form = $("#container-form");
+            const $modal = $("#form-modal-backdrop");
+
+            $("#container-form-title").text(
+                mode === "view" ? "Visualizar Reserva" : "Editar Espaço"
+            );
+
+            for (const key in data) {
+                $form.find(`[name="${key}"]`).val(data[key] || "");
+            }
+
+            $form.find("input").each(function () {
+                const name = $(this).attr("name");
+                $(this).prop("disabled", mode === "view" || name === "id");
+            });
+
+            $("#save-btn").toggle(mode === "edit");
+
+            $("#save-btn").off("click").on("click", function (e) {
+                e.preventDefault();
+                if (typeof saveAction === "function") {
+                    const formData = {};
+                    $form.serializeArray().forEach(({ name, value }) => {
+                        formData[name] = value;
+                    });
+
+                    saveAction(formData);
+                    console.log("Dados salvos:", formData);
+
+                    $modal.removeClass("show");
+                    $form[0].reset();
+                }
+            });
+
+            $modal.off("click").on("click", function (e) {
+                if (e.target === this || e.target.id === "cancel-btn") {
+                    $modal.removeClass("show");
+                    $form[0].reset();
+                }
+            });
+
+            $modal.addClass("show");
+
+        }
+
+        $(document).on("click", ".icon-visualizar", async function () {
+          const id = $(this).data("id");
+      
+          const { data, error } = await supabaseClient
+            .from("reserva")
+            .select("*")
+            .eq("id", id)
+            .single();
+            
+            console.log(data);
+          if (error) {
+            console.error("Erro ao buscar reserva:", error);
+            return;
+          }
+      
+          renderFormModal("view", {
+            id: data.id,
+            nm_usuario: data.nm_usuario,
+            contato_usuario: data.contato_usuario,
+            dt_reserva: data.dt_reserva,
+            hr_ini_fim: data.hr_ini_fim,
+            dt_solicitacao: data.dt_solicitacao,
+            espaco_id: data.espaco_id,
+            ds_reserva: data.ds_reserva
+            });
+
+        });
+      
+        $(document).ready(() => {
+          carregarReservas();
+        });
+    </script>
+      
+</body>
+
+</html>

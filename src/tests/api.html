@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste API.js</title>
+</head>
+<body>
+    <h1>Teste: src/js/lib/api/api.js</h1>
+    <script type="module">
+        import { createApiClient } from "../../src/js/lib/api/api.js";
+        $(document).ready(async () => {
+            const api = createApiClient({
+                baseUrl: "https://jsonplaceholder.typicode.com",
+                defaultHeaders: {
+                    "Content-Type": "application/json"
+                }
+            });
+
+            async function testApiClient() {
+                try {
+                    console.log("🔍 GET /posts/1");
+                    let getData = await api.get("posts/1");
+                    console.log("✅ GET:", getData);
+
+                    console.log("\n📨 POST /posts");
+                    const postData = await api.post("posts", {
+                    title: "foo",
+                    body: "bar",
+                    userId: 1
+                    });
+                    console.log("✅ POST:", postData);
+
+                    console.log("\n🛠 PATCH /posts/1");
+                    const patchData = await api.patch("posts/1", {
+                    title: "updated title"
+                    });
+                    console.log("✅ PATCH:", patchData);
+
+                    console.log("🔍 GET /posts/1");
+                    getData = await api.get("posts/1");
+                    console.log("✅ GET:", getData);
+
+                    console.log("\n🗑 DELETE /posts/1");
+                    const deleteData = await api.delete("posts/1");
+                    console.log("✅ DELETE:", deleteData);
+
+                    console.log("🔍 GET /posts/1");
+                    getData = await api.get("posts/1");
+                    console.log("✅ GET:", getData);
+
+                } catch (error) {
+                    console.error("❌ Erro durante os testes:", error.message);
+                }
+            }
+
+            testApiClient();
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <title>Agendar Laboratório</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+    body {
+      background-color: var(--background-primary);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .header {
+      background-color: var(--background-second);
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .header .logo { font-size: 2rem; color: var(--primary-color); text-decoration: none; }
+    .header .nav a { margin-left: 1.5rem; color: var(--text-color); text-decoration: none; font-weight: 600; }
+    .main-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 80px);
+      padding: 40px 20px;
+    }
+    .form-container {
+      width: 100%;
+      max-width: 500px;
+      background: var(--background-second);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    h2 { text-align: center; margin-bottom: 20px; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, textarea {
+      width: 100%; padding: 10px; margin-top: 5px;
+      border-radius: 5px; border: 1px solid #ccc; font-size: 1rem;
+    }
+    button {
+      margin-top: 25px; width: 100%; padding: 12px;
+      background-color: var(--color-button); color: white;
+      font-size: 1rem; border: none; border-radius: 5px; cursor: pointer;
+    }
+    button:hover { background-color: var(--color-alive); }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">LabReserve</a>
+    <nav class="nav">
+      <a href="index.html">Início</a>
+      <a href="#espacos">Espaços</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <div class="form-container">
+      <h2>Agendar Laboratório</h2>
+      <form id="formAgendamento">
+        <label for="data">Data da Reserva</label>
+        <input type="date" id="data" name="dt_reserva" required />
+
+        <label for="horario">Horário (início - fim)</label>
+        <input type="text" id="horario" name="hr_ini_fim" placeholder="Ex: 13:00 - 15:00" required />
+
+        <label for="nome">Nome do Usuário</label>
+        <input type="text" id="nome" name="nm_usuario" placeholder="Ex: Gabriel" required />
+
+        <label for="contato">Contato (telefone ou email)</label>
+        <input type="text" id="contato" name="contato_usuario" placeholder="Ex: (48) 99999-9999" required />
+
+        <label for="descricao">Descrição da Reserva</label>
+        <textarea id="descricao" name="ds_reserva" rows="4"
+          placeholder="Descreva o propósito da reserva" required></textarea>
+
+        <button type="submit">Realizar Reserva</button>
+      </form>
+    </div>
+  </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+<script>
+  const supabaseUrl = "https://xvlggnqoaptrzaaaeiem.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTQzMTEsImV4cCI6MjA2NzA3MDMxMX0.G6KmXZ07TwWIn_02-CVIuq4y3Fo65A_mRCKAEI5PMqA";
+  const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const espaco_id = urlParams.get("espaco_id");
+
+  if (!espaco_id) {
+    alert("Espaço não identificado. Volte e selecione um laboratório para agendar.");
+    throw new Error("espaco_id não encontrado na URL.");
+  }
+
+  document.getElementById("formAgendamento").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const dt_reserva      = document.getElementById("data").value;
+    const hr_ini_fim      = document.getElementById("horario").value;
+    const nm_usuario      = document.getElementById("nome").value;
+    const contato_usuario = document.getElementById("contato").value;
+    const ds_reserva      = document.getElementById("descricao").value;
+
+    try {
+      const { data: lastRow, error: selectError } = await supabaseClient
+        .from("reserva")
+        .select("id")
+        .order("id", { ascending: false })
+        .limit(1);
+
+      let newId = 1;
+      if (selectError) throw selectError;
+      if (lastRow && lastRow.length > 0) {
+        newId = Number(lastRow[0].id) + 1;
+      }
+
+      const { data, error } = await supabaseClient
+        .from("reserva")
+        .insert([{
+          id: newId,
+          dt_reserva,
+          hr_ini_fim,
+          nm_usuario,
+          contato_usuario,
+          ds_reserva,
+          espaco_id: parseInt(espaco_id)
+        }]);
+
+      if (error) {
+        alert("Erro ao agendar: " + error.message);
+        console.error(error);
+      } else {
+        alert("Reserva realizada com sucesso!");
+        this.reset();
+      }
+    } catch (err) {
+      console.error("Erro inesperado:", err);
+      alert("Erro ao tentar realizar a reserva. Verifique os dados e tente novamente.");
+    }
+  });
+</script>
+
+</body>
+</html>

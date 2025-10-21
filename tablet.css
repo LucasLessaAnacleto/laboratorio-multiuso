@@ -1,0 +1,36 @@
+.header {
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.nav {
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+.cards, .features-sobre {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.espacos-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.card, .feature-card-sobre {
+    width: calc(50% - 20px);
+    max-width: 300px;
+}
+
+.espaco-card {
+    width: 100%;
+    max-width: none;
+}
+
+.btn-buscar {
+  width: auto;
+}

@@ -1,0 +1,8 @@
+id,dt_reserva,hr_ini_fim,nm_usuario,contato_usuario,dt_solicitacao,espaco_id,ds_reserva
+1,2025-07-15,08:00–10:00,Ana Lima,(11) 98765-0011,2025-07-10,1,Extração de DNA para pesquisa genética
+2,2025-07-16,14:00–17:00,Carlos Mendes,(11) 98765-0012,2025-07-11,2,Síntese orgânica de novos compostos
+3,2025-07-20,09:30–12:00,Juliana Rocha,(11) 98765-0013,2025-07-12,3,Análise óptica em projeto de física
+4,2025-07-25,13:00–15:30,Renato Farias,(11) 98765-0014,2025-07-13,4,Testes de concreto para construção sustentável
+5,2025-07-27,10:00–12:00,Beatriz Souza,(11) 98765-0015,2025-07-14,5,Simulações de redes neurais artificiais
+6,2025-07-30,15:00–17:00,Lívia Martins,(11) 98765-0016,2025-07-15,6,Testes com fármacos em condições controladas
+7,2025-08-01,08:00–11:00,João Ferreira,(11) 98765-0017,2025-07-16,7,Exame clínico de tecidos animais

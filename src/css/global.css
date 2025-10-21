@@ -1,0 +1,629 @@
+/* ---- Font Inter  ---- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* ---- Icones Personalizados ---- */
+i.nav-icon {
+    display: inline-block;
+    font-size: 2.5rem;
+    width: 1em;
+    height: 1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+i.nav-icon.icon-home {
+    background-image: url('../assets/home.png');
+}
+
+i.nav-icon.icon-calendar {
+    background-image: url('../assets/datas.png');
+}
+
+i.nav-icon.icon-equipamento {
+    background-image: url('../assets/equipamento.png');
+}
+
+i.nav-icon.icon-espaco {
+    background-image: url('../assets/espaco.png');
+}
+
+i.nav-icon.icon-config {
+    background-image: url('../assets/config.png');
+}
+
+i.nav-icon.icon-user {
+    background-image: url('../assets/user.png');
+}
+
+i.nav-icon.icon-search {
+    background-image: url('../assets/pesquisar.png');
+}
+
+svg.icon-visualizar{
+    font-size: 2rem;
+    height: 1em;
+    width: 1em;
+    transition: fill ease .2s;
+    &:hover{
+        cursor: pointer;
+        fill: var(--color-alive);
+    }
+}
+
+/* ---- Variáveis Cores ---- */
+:root {
+    --primary-color: #2F80ED;           /* Azul principal usado no botão “+ Novo Espaço” e links */
+    --secondary-color: #EB5757;         /* Vermelho usado na tag "Indisponível" e link "Excluir" */
+    --background-primary: #FFFFFF;      /* Fundo branco da área principal */
+    --background-second: #D6F0FB;       /* Fundo do sidebar */
+    --background-third: #F7F7F7;        /* Fundo da paginação e tabela */
+    --color-button: #64b5f6;      /* Azul claro do botão “+ Novo Espaço” */
+    --color-alive: #2ba0ff;             /* Cor tema vivo */
+    --text-color: #333333;              /* Texto principal (nome, código, sala etc.) */
+    --text-letter: #736C6C;             /* Texto principal (nome, código, sala etc.) */
+    --text-disable: #C7C7C7;            /* Texto botão desabilitado (não aparece, mas padrão útil) */
+    --text-button: #FFFFFF;             /* Texto branco no botão azul “+ Novo Espaço” */
+    --text-cancel: #000000;             /* Texto escuro no botão ou ações padrão */
+    --text-title: #849ea9;         /* Título "Salas Multilaboratoriais" */
+    --text-subtitle: #433A3A; /* Texto de subtítulo (ex: "Espaços") */
+    --color-active: #c5e5f3;         /* Cor ativa nav item */
+    --color-subtext: #757575;        /* Texto de paginação */
+    --color-accent: #EB5757;         /* Vermelho de destaque */
+    --color-neutral: #EFEEEE/*#BDBDBD*/;        /* Cinza neutro claro */
+    --color-border: #E0E0E0;         /* Borda de inputs e tabela */
+    --flag-on: #6FCF97;                 /* Verde usado na tag "Disponível" */
+    /* dependências */
+    --background-second2: #EAF6FC;      /* Fundo azul claro do menu lateral */
+}
+
+/* ---- Reset CSS ---- */
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    color: var(--text-letter);
+    font-family: "Inter", sans-serif;
+}
+:root,html{font-size: 62.5%;}
+
+@media (max-width: 1249px) {
+    :root,html{font-size: 60%;}
+}
+@media (max-width: 970px) {
+    :root,html{font-size: 50%;}
+}
+@media (max-width: 500px) {
+    :root,html{font-size: 45%;}
+}
+@media (max-width: 400px) {
+    :root,html{font-size: 40%;}
+}
+
+/* ---- Body ---- */
+body {
+    background-color: var(--background-primary); 
+    display: flex;
+    height: 100vh;
+}
+
+/* ---- Layout padrão ---- */
+
+.app-layout {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--background-second); 
+    padding: 2rem 0.6rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+}
+
+.sidebar-logo {
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-nav > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+a.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    padding: 1.3rem 3.5rem 1.3rem 2rem; 
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-radius: 12px; 
+    transition: all ease 0.2s;
+    i{ 
+        font-size: 2.2rem; 
+        margin-right: 1.2rem;
+    }
+    i.icon-home{ 
+        font-size: 2.6rem; 
+    }
+}
+
+a.sidebar-nav-item:hover {
+    background-color: var(--background-second);
+    filter: brightness(0.93);
+}
+
+.sidebar-nav .sidebar-nav-item.active { /* Nav ativa */
+    background-color: var(--color-active);  
+    font-weight: 700;
+}
+
+/* Header + Main */
+.app-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-primary); 
+}
+
+/* Header */
+.app-header {
+    background-color: var(--background-primary); 
+    padding: 1.5rem 4rem; 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+    min-height: 60px; 
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: var(--color-active);  
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.app-header-title h2{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-title);
+}
+
+/* Main */
+.app-main {
+    padding: 2rem 4rem; 
+    flex-grow: 1;
+    border-top: 1px solid var(--color-border); 
+}
+
+.page-title-actions {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-top: 1rem; 
+}
+
+.page-title-actions h1 {
+    font-size: 2.5rem;
+    color: var(--text-subtitle);
+}
+
+/* ---- Componentes ---- */
+
+/* Buttons */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border-radius: 8px; 
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.button.primary {
+    background-color: var(--color-button);
+    color: var(--text-button);
+    &:hover {
+        background-color: var(--color-alive);
+    }
+}
+
+/* Seatch Input */
+.search-input{
+    display: flex;
+    align-items: center;
+    background-color: var(--background-third);
+    border-radius: 12px; 
+    border: 1px solid var(--color-border);
+    max-width: 400px; 
+    padding: 0.5rem 1rem;
+}
+.search-input input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    &::placeholder {
+        opacity: 0.8; /* Placeholder mais claro */
+    }
+}
+.search-input > i{
+    font-size: 2rem;
+}
+
+/* Table Container */
+
+.table-container{
+    overflow-x: auto;
+}
+
+#table-data {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.5rem;
+  background-color: var(--background-primary);
+}
+
+#table-data th, td {
+  padding: 1.6rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: middle;
+}
+
+#table-data thead tr th:first-child,
+#table-data tbody tr td:first-child {
+    max-width: 1.6rem;
+}
+#table-data .loading-row {
+    text-align: center;
+    color: var(--primary-color);
+    font-style: italic;
+}
+#table-data thead tr {
+  background-color: var(--color-active);
+  text-align: left;
+  th{ font-weight: 400; }
+}
+
+#table-data td i.nav-icon {
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Actions Links */
+
+.action-link-edit {
+  color: #0ea5e9;
+  font-weight: 500;
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+.action-link-delete {
+  color: #ef4444;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 1rem;
+  span{
+    font-size: 1.2rem;
+    color: var(--color-subtext)/*#666*/;
+  }
+  
+}
+
+.page-buttons button {
+  margin: 0 4px;
+  padding: .6rem 1.1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--background-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  &:hover{
+    filter: brightness(.92);
+  }
+}
+
+.page-buttons button.active {
+  background-color: var(--color-alive);
+  color: white;
+  font-weight: bold;
+}
+
+.container-info-data {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5rem;
+}
+
+
+
+/* Form Modal */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-backdrop.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  max-width: 700px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal-backdrop.show .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content #container-form-title{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.modal-content #container-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-content #container-form label {
+    align-items: center;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    gap: 2rem;
+    font-size: 1.4rem;
+}
+
+.modal-content #container-form input {
+    width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-content #container-form input:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 4px rgba(0, 119, 204, 0.5);
+  outline: none;
+}
+
+.modal-content #container-form div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2.2rem;
+  margin-top: 16px;
+}
+
+#save-btn, #delete-btn,
+#cancel-btn, #close-btn {
+  padding: 10px 24px;
+  flex: 1;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+/* Botão Salvar */
+#save-btn, #delete-btn {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+#save-btn:hover, #delete-btn:hover {
+  background-color: #125ba3;
+  box-shadow: 0 4px 10px rgba(25, 118, 210, 0.2);
+}
+
+/* Botão Cancelar */
+#cancel-btn, #close-btn {
+  background-color: #e0e0e0;
+  color: #424242;
+}
+
+#cancel-btn:hover, #close-btn:hover {
+  background-color: #d5d5d5;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.modal-content #container-form .label-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+}
+
+.modal-content #container-form .label-group label {
+  width: 140px; /* largura fixa */
+  font-weight: 600;
+  color: #333;
+  font-size: 1.6rem;
+}
+
+.modal-content #container-form .label-group input {
+  flex: 1;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modal-content #container-form .label-group input:focus {
+  border-color: #0077cc;
+  box-shadow: 0 0 4px rgba(0, 119, 204, 0.5);
+  outline: none;
+}
+
+/* ConfirmModal */
+
+#confirmation-modal.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#confirmation-modal.show {
+  display: flex;
+}
+
+/* Estilo principal */
+#confirmation-modal .confirmModal .modal-content {
+  background: #fff;
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease;
+}
+
+#confirmation-modal .confirmModal-content {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#confirmation-modal .confirm-heading {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1b1b1b;
+}
+
+#confirmation-modal .confirm-description {
+  font-weight: 300;
+  font-size: 14px;
+  color: #555;
+}
+
+#confirmation-modal .confirm-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* #confirmation-modal .card-button {
+  padding: 10px 24px;
+  min-width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+}
+
+#confirmation-modal .card-button.primary {
+  background-color: #f44336;
+  color: white;
+}
+#confirmation-modal .card-button.primary:hover {
+  background-color: #d32f2f;
+  box-shadow: 0 4px 10px rgba(244, 67, 54, 0.3);
+}
+
+#confirmation-modal .card-button.secondary {
+  background-color: #f1f1f1;
+  color: #555;
+}
+#confirmation-modal .card-button.secondary:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+} */
+
+#confirmation-modal .exit-button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+#confirmation-modal .exit-button svg {
+  fill: rgb(175, 175, 175);
+}
+#confirmation-modal .exit-button:hover svg {
+  fill: black;
+}
+
+/* Animação opcional */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

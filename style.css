@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+:root {
+    --primary-color: #2F80ED;
+    --secondary-color: #EB5757;
+    --background-primary: #FFFFFF;
+    --background-second: #D6F0FB;
+    --background-third: #F7F7F7;
+    --color-button: #64b5f6;
+    --color-alive: #2d9df7;
+    --text-color: #333333;
+    --text-letter: #736C6C;
+    --text-disable: #C7C7C7;
+    --text-button: #FFFFFF;
+    --text-cancel: #000000;
+    --text-title: #849ea9;
+    --text-subtitle: #433A3A;
+    --color-active: #c5e5f3;
+    --color-subtext: #757575;
+    --color-accent: #EB5757;
+    --color-neutral: #EFEEEE;
+    --color-border: #E0E0E0;
+    --flag-on: #6FCF97;
+    --background-second2: #EAF6FC;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--background-primary);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+.header {
+  background-color: var(--background-second);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: 2.0rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav a {
+  margin-left: 0;
+  font-weight: 600;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.hero {
+  position: relative;
+  background-image: url('https://www.acisbsbo.com.br/wp-content/uploads/2023/05/senac-laboratorio-multiuso1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 20px;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 2.4rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #e0e0e0;
+  margin-bottom: 30px;
+}
+
+.button.primary {
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.features, .sobre-sistema, .espacos, .contact {
+  padding: 40px 20px;
+  text-align: center;
+}
+.features { background-color: #f9f9f9; }
+.sobre-sistema { background-color: #f8f8f8; padding-top: 60px; padding-bottom: 60px; }
+.espacos { background-color: var(--background-third); }
+.contact { background-color: var(--background-second); }
+
+
+.features h2, .sobre-sistema h2, .espacos h2, .contact h2 {
+  font-size: 2.0rem;
+  margin-bottom: 30px;
+}
+
+.sobre-sistema .descricao {
+  font-size: 1.0rem;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+.cards, .features-sobre, .espacos-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.card, .feature-card-sobre, .espaco-card {
+  width: 100%;
+  max-width: 350px;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.card {
+  background-color: white;
+  padding: 30px;
+  text-align: left;
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.feature-card-sobre, .espaco-card {
+  position: relative;
+  height: 220px;
+  color: white;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end; 
+}
+
+.feature-card-sobre:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s;
+}
+
+.feature-card-sobre .overlay, .espaco-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.feature-card-sobre .content, .espaco-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent); 
+}
+
+.feature-card-sobre h3, .espaco-overlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+.feature-card-sobre p {
+  font-size: 0.9rem;
+  color: #ddd;
+}
+
+.busca-laboratorios {
+  color: var(--text-color);
+  padding: 30px 0;
+  text-align: center;
+}
+
+.busca-laboratorios h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.btn-buscar {
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--background-second);
+  font-size: 0.9rem;
+  color: var(--text-color);
+}
