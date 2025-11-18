@@ -1,7 +1,7 @@
 import { createApiClient } from "./api.js";
 
 const SUPABASE_URL = "https://xvlggnqoaptrzaaaeiem.supabase.co/rest/v1";
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE0OTQzMTEsImV4cCI6MjA2NzA3MDMxMX0.G6KmXZ07TwWIn_02-CVIuq4y3Fo65A_mRCKAEI5PMqA";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh2bGdnbnFvYXB0cnphYWFlaWVtIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MTQ5NDMxMSwiZXhwIjoyMDY3MDcwMzExfQ.tPQJiwxB1BidgzY4p4mcwxjkhN5klNFKh6dygN8Y3Ss";
 
 // Configurações Supabase
 const supabaseApi = createApiClient({
